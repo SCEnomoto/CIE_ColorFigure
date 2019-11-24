@@ -1,0 +1,70 @@
+import itertools
+import numpy as np
+import matplotlib.pyplot as plt
+import colour
+from colour import plotting
+
+
+
+def run():
+    #RGBを0.0~0.1の間隔で分割し、組み合わせを列挙
+    line = np.linspace(0.0, 1.0, 15, endpoint=True)
+    rgb = np.array(list(itertools.product(line,line,line)), dtype=np.float)
+
+
+
+
+    plotting.plot_planckian_locus_in_chromaticity_diagram_CIE1931(bounding_box=(-0.2, 1.0, -0.2, 1.0), standalone=False)
+
+    #sRGB領域へプロット
+    ax = plt.gca()
+    plt.xlabel(r'x')
+    plt.ylabel(r'y')
+    ax.grid(True)
+    plt.title(r'Chromaticity Diagram')
+
+    ax.scatter(0.304073247831963,0.317322344863436, s=20, c='white', linewidths='2', edgecolors='red', label="run24")
+    ax.scatter(0.311563277149564, 0.326778735641299, s=20, c='white', linewidths='2', edgecolors='red', label="run25")
+    ax.scatter(0.307804449416505, 0.323628016868316, s=20, c='white', linewidths='2', edgecolors='red', label="run26")
+    ax.scatter(0.312651404795037, 0.326888420207975, s=20, c='white', linewidths='2', edgecolors='red', label="run27")
+    ax.scatter(0.312737255224345, 0.326016249413791, s=20, c='white', linewidths='2', edgecolors='red', label="run28")
+    ax.scatter(0.312444155086481, 0.325409078622607, s=20, c='white', linewidths='2', edgecolors='red', label="run29")
+    ax.scatter(0.313308617630938, 0.325492002008063, s=20, c='white', linewidths='2', edgecolors='red', label="run30")
+    ax.scatter(0.314185927431379, 0.326091322513854, s=20, c='white', linewidths='2', edgecolors='red', label="run31")
+    ax.scatter(0.31107999602209, 0.322665161963942, s=20, c='white', linewidths='2', edgecolors='red', label="run32")
+    ax.scatter(0.2635625605771, 0.274094656727656, s=20, c='white', linewidths='2', edgecolors='red', label="run33")
+    ax.scatter(0.261298540020901, 0.271451392187653, s=20, c='white', linewidths='2', edgecolors='red', label="run34")
+    ax.scatter(0.258055330477506, 0.267468799810665, s=20, c='white', linewidths='2', edgecolors='red', label="run35")
+    ax.scatter(0.255696157743135, 0.264331497914272, s=20, c='white', linewidths='2', edgecolors='red', label="run36")
+    ax.scatter(0.256309747231227, 0.264874844137225, s=20, c='white', linewidths='2', edgecolors='red', label="run37")
+    ax.scatter(0.256383220555738, 0.265361481870604, s=20, c='white', linewidths='2', edgecolors='red', label="run38")
+    ax.scatter(0.255676274840114, 0.264796564654615, s=20, c='white', linewidths='2', edgecolors='red', label="run39")
+    ax.scatter(0.260584125192202, 0.271703824566677, s=20, c='white', linewidths='2', edgecolors='red', label="run40")
+    ax.scatter(0.263486841789155, 0.276543068797645, s=20, c='white', linewidths='2', edgecolors='red', label="run41")
+    ax.scatter(0.27393066815084, 0.290581915497449, s=20, c='white', linewidths='2', edgecolors='red', label="run42")
+
+
+
+
+
+
+
+    #D65のプロット
+    ax.scatter(0.3127, 0.3290, s=50, c='white', linewidths='2', edgecolors='navy', label="D65")
+
+    ax.annotate(
+        'D65',
+        xy=(0.31, 0.33),  # arrowpropsの矢印の終点
+        xytext=(0.26, 0.33 + 0.05),  # 注釈コメントの位置。arrowprops矢印の始点
+        arrowprops=dict(arrowstyle='->', facecolor='black'),  # 矢印の設定
+        horizontalalignment='left',
+        verticalalignment='top',
+        color='black'
+    )
+
+    plt.legend(loc='upper right')   #注釈ボックスの位置
+    plt.show()
+
+    print('End')
+
+run()
